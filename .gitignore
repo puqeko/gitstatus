@@ -6,3 +6,5 @@
 /obj
 /usrbin/gitstatusd*
 /.vscode/ipch
+.DS_Store
+/result
