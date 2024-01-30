@@ -28,15 +28,22 @@
         });
         gitstatus = pkgs.stdenv.mkDerivation {
           name = "gitstatusd";
-          buildInputs = [our.libgit2 pkgs.git]  ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin [ pkgs.libiconv ];
+          buildInputs = [ pkgs.zsh our.libgit2 ]  ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin [ pkgs.libiconv ];
           buildPhase = ''
+            zsh -c '
+            for f in *.zsh install; do
+              zcompile -R -- $f.zwc $f || exit;
+            done
+            ';
+
+            mkdir usrbin
             APPNAME="$name"         \
             OBJDIR="$TEMP"/gitstatus    \
             make -j "$NIX_BUILD_CORES"
           '';
           installPhase = ''
             mkdir -p $out/usrbin/
-            cp usrbin/"$name" "$out"/
+            cp usrbin/"$name" "$out"/usrbin/
             cp gitstatus.plugin.* "$out"/
             cp gitstatus.prompt.* "$out"/
           '';
@@ -52,4 +59,3 @@
     }
   );
 }
-
