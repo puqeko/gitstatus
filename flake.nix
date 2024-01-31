@@ -42,10 +42,12 @@
             make -j "$NIX_BUILD_CORES"
           '';
           installPhase = ''
-            mkdir -p $out/usrbin/
-            cp usrbin/"$name" "$out"/usrbin/
-            cp gitstatus.plugin.* "$out"/
-            cp gitstatus.prompt.* "$out"/
+            mkdir -p $out/share/gitstatus/usrbin
+            cp usrbin/"$name" $out/share/gitstatus/usrbin
+            cp gitstatus.plugin.* $out/share/gitstatus
+            cp gitstatus.prompt.* $out/share/gitstatus
+            cp install* $out/share/gitstatus
+            cp build.info $out/share/gitstatus
           '';
           src = ./.;
           inherit system;

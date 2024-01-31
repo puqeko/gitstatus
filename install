@@ -143,7 +143,8 @@ END
   fi
 
   local daemon="${GITSTATUS_DAEMON:-}"
-  local cache_dir="${GITSTATUS_CACHE_DIR:-${XDG_CACHE_HOME:-$HOME/.cache}/gitstatus}"
+  local cache_dir="${"${${(%):-%x}:a}"%/*}"  # path to this directory
+  echo $cache_dir
 
   if [ -z "$no_check" ]; then
     if [ -n "${daemon##/*}" ]; then
