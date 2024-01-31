@@ -144,7 +144,6 @@ END
 
   local daemon="${GITSTATUS_DAEMON:-}"
   local cache_dir="${"${${(%):-%x}:a}"%/*}"  # path to this directory
-  echo $cache_dir
 
   if [ -z "$no_check" ]; then
     if [ -n "${daemon##/*}" ]; then
