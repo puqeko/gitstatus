@@ -1,5 +1,15 @@
 # gitstatus
 
+---
+
+Customisations in this fork
+- Nix integration
+- Don't fail on index unreadable, instead treat as if query made disregarding index data
+- Pass extra record with result to indicate if index was read
+- Update plugins and help message to support this
+
+---
+
 **gitstatus** is a 10x faster alternative to `git status` and `git describe`. Its primary use
 case is to enable fast git prompt in interactive shells.
 
