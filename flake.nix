@@ -57,7 +57,7 @@
         };
       };
     in {
-      packages.gitstatus = our.gitstatus;
+      packages.default = our.gitstatus;
       devShell = pkgs.mkShell {
         inputsFrom = [our.gitstatus];
       };
